@@ -27,18 +27,17 @@ if emailAddress == ""
    emailAddress = randomValue + "@mail.com"
 
 
-//Visit front page
+//visit front page
 https://coronavirus.dev.blueant-solutions.com/
 keyboard [enter]
 
 wait 3 seconds
 
-//Clicks the register button
-click /html/body/div[2]/div[3]/div[3]/div/div/a
+//clicks the register button
+click /html/body/div[2]/div[3]/div[1]/div/div/a
 
 wait 3 seconds
 
-//Fills the form
 type //*[@id="first_name"] as `firstName`
 type //*[@id="last_name"] as `lastName`
 type //*[@id="display_name"] as `displayName`
@@ -61,6 +60,8 @@ wait 1.5 second
 keyboard [down][enter]
 
 type //*[@id="house_number"] as `houseNumber`
+
+click
 click //*[@id="volunteer_reg_form"]/div[6]/div[2]/div/div/input
 click `availabilityOption`
 click //*[@id="volunteer_reg_form"]/div[6]/div[3]/div/div/input
@@ -82,7 +83,6 @@ keyboard [down][enter]
 click //*[@id="privacy_policy"]
 click //*[@id="health_checkbox"]
 
-//Submits form
 click /html/body/div[2]/div[1]/div/div/form/div[10]/div/button
 
 wait 1 seconds

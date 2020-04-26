@@ -19,12 +19,12 @@ wait 1 second
 
 if url() == "https://coronavirus.dev.blueant-solutions.com/login"
    echo "Login test failed"
-   js var date = new Date.now()
+   js var date = Date.now()
    js var log = "The test failed at " + date
    dump `log` to loginError.txt
 
 if url() != "https://coronavirus.dev.blueant-solutions.com/login"
    echo "Login test succeeded"
-   js var date = new Date.now()
+   js var date = Date.now()
    js var log = "The test succeeded at " + date
    dump `log` to loginSuccess.txt
