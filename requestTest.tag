@@ -6,14 +6,16 @@ lastName = "deleteMe"
 displayName = ""
 yearOfBirth = "1990"
 emailAddress = ""
-phone = "9999999999"
+phone = "0621555123"
 facebookProfile = "facebook.com"
 postcode = "7626"
 street = "kiss" //Doesn't have to be the entire streetname
 houseNumber = "10"
-availabilityOption = "Reggeltől-Estig"
-assistanceTypeOption = "Tüzelő hiány"
-
+infected = "false"
+quarantine = "true"
+chronicIllness = "false"
+healthy = "false"
+reason = "Meleg élelmiszer hiány"
 
 //Generate random values
 js randomValue = Math.floor(Math.random() * 8999999999)+10000000000;
@@ -41,7 +43,7 @@ wait 3 seconds
 type //*[@id="first_name"] as `firstName`
 type //*[@id="last_name"] as `lastName`
 type //*[@id="display_name"] as `displayName`
-click //*[@id="volunteer_reg_form"]/div[3]/div[4]/div/input
+click /html/body/div[2]/div[1]/div/div/form/div[3]/div[4]/div/input
 click `yearOfBirth`
 type //*[@id="email"] as `emailAddress`
 type //*[@id="phone"] as `phone`
@@ -61,41 +63,35 @@ keyboard [down][enter]
 
 type //*[@id="house_number"] as `houseNumber`
 
-click
-click //*[@id="volunteer_reg_form"]/div[6]/div[2]/div/div/input
-click `availabilityOption`
-click //*[@id="volunteer_reg_form"]/div[6]/div[3]/div/div/input
-click `assistanceTypeOption`
-keyboard [esc]
+if infected == "true"
+   click /html/body/div[2]/div[1]/div/div/form/div[6]/div[1]/div/div[2]/div/label/span
 
-click //*[@id="area_postcode_1"]
-wait 0.5 second
-keyboard `postcode`
-wait 0.5 second
-keyboard [down][enter]
+if quarantine == "true"
+   click /html/body/div[2]/div[1]/div/div/form/div[6]/div[2]/div/div[2]/div/label/span
 
-click //*[@id="area_street_1"]
-wait 0.5 second
-keyboard `street`
-wait 1.5 second
-keyboard [down][enter]
+if chronicIllness == "true"
+   click /html/body/div[2]/div[1]/div/div/form/div[6]/div[3]/div/div[2]/div/label/span
 
+if healthy == "true"
+   click /html/body/div[2]/div[1]/div/div/form/div[7]/div/div/div[2]/div/label/span
+
+click /html/body/div[2]/div[1]/div/div/form/div[8]/div[1]/div/input
+click `reason`
 click //*[@id="privacy_policy"]
-click //*[@id="health_checkbox"]
 
 click /html/body/div[2]/div[1]/div/div/form/div[10]/div/button
 
-wait 1 seconds
+wait 5 seconds
 
 //Creates either a success or error file
-if url() == "https://coronavirus.dev.blueant-solutions.com/onkentes-regisztracio"
+if url() == "https://coronavirus.dev.blueant-solutions.com/segitseg-keres"
    echo "Test failed"
-   js var date = Date.now()
-   js var log = "The test failed at " + date
+   js date = Date.now()
+   js log = "The test failed at " + date
    dump `log` to registerError.txt
 
-if url() != "https://coronavirus.dev.blueant-solutions.com/onkentes-regisztracio"
+if url() != "https://coronavirus.dev.blueant-solutions.com/segitseg-keres"
    echo "Test succeeded"
-   js var date = Date.now()
-   js var log = "The test succeeded at " + date
+   js date = Date.now()
+   js log = "The test succeeded at " + date
    dump `log` to registerSuccess.txt

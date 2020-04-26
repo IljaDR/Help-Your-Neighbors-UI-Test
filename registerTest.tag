@@ -90,12 +90,12 @@ wait 1 seconds
 //Creates either a success or error file
 if url() == "https://coronavirus.dev.blueant-solutions.com/onkentes-regisztracio"
    echo "Test failed"
-   js var date = Date.now()
-   js var log = "The test failed at " + date
+   js date = Date.now()
+   js log = "The test failed at " + date
    dump `log` to registerError.txt
 
 if url() != "https://coronavirus.dev.blueant-solutions.com/onkentes-regisztracio"
    echo "Test succeeded"
-   js var date = Date.now()
-   js var log = "The test succeeded at " + date
+   js date = Date.now()
+   js log = "The test succeeded at " + date
    dump `log` to registerSuccess.txt
